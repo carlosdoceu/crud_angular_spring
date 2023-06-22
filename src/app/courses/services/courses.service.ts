@@ -21,8 +21,9 @@ export class CoursesService {
     );
   }
 
-
-  save(record: Courses){
+//No Ts salvando como Partial pois estamos passando tudo para o servidor
+//pois não é necessariamente passar tudo, dizemos que passamos somente o necessario
+  save(record: Partial<Courses>){
    return this.httpClient.post<Courses>(this.API, record);
   }
 }

@@ -1,8 +1,9 @@
-<mat-card>
-  <mat-card-content>
+<mat-card >
+  <mat-card-content class="min-width">
     <mat-toolbar color="primary">Adicionar Nova</mat-toolbar>
 
-    <form [formGroup]="form">
+
+    <form   [formGroup]="form">
       <mat-form-field class="full-width">
         <input matInput placeholder="Nome" formControlName="name" />
         <!--name esta associado da maneira como esta em course-form.component.ts-->
@@ -11,7 +12,7 @@
       <mat-form-field class="full-width">
         <mat-label for="categoria">Categoria</mat-label>
         <mat-select formControlName="category">
-          <mat-option value="null"></mat-option>
+        <!-- <mat-option value="null"></mat-option> -->
           <mat-option value="front-end">front-end</mat-option>
           <mat-option value="back-end">back-end</mat-option>
         </mat-select>
@@ -19,10 +20,10 @@
       </mat-form-field>
 
       <mat-card-actions>
-        <button (click)="adicionarCurso()" mat-flat-button color="primary">
+        <button  mat-flat-button color="primary" (click)="adicionarCurso()">
           Adicionar
         </button>
-        <button (click)="cancelarAdicao()" mat-button>Cancelar</button>
+        <button  mat-button color="warn" (click)="cancelarAdicao()">Cancelar</button>
       </mat-card-actions>
     </form>
   </mat-card-content>

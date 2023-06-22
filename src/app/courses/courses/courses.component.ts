@@ -13,54 +13,48 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.scss'],
 })
-
 export class CoursesComponent implements OnInit {
-  courses$: Observable <Courses[]>;
-  displayedColumns=['name','category','actions'];
-
+  courses$: Observable<Courses[]>;
+  displayedColumns = ['name', 'category', 'actions'];
 
   // CoursesService: CoursesService;
 
-
   constructor(
     private CoursesService: CoursesService,
-    public dialog : MatDialog,
+    public dialog: MatDialog,
     //Router classe ja existente no angular, controla rotas
     private router: Router,
-    private route: ActivatedRoute,
-
-
-    ) {
+    private route: ActivatedRoute
+  ) {
     //this.courses = [];
     // this.CoursesService = new CoursesService();
-    this.courses$ = this.CoursesService.list()
-    .pipe(
-      catchError( error =>{
-        this.onError("Erro no carregamento da Pagína");
+    this.courses$ = this.CoursesService.list().pipe(
+      catchError((error) => {
+        this.onError('Erro no carregamento da Pagína');
         console.log(error);
-        return of([])
+        return of([]);
       })
-
     );
-
-
-
-
   }
-  onError(errorMsg: string){
+  onError(errorMsg: string) {
     this.dialog.open(ErrorDialogComponent, {
-      data: errorMsg
+      data: errorMsg,
     });
   }
 
-
-  adicionarCurso(){
+  adicionarCurso() {
     // console.log("onAdd");
     //diz a rota, usa rota relativa caso mudança em nome da rota usando relativeTo 'route' possui a rota anterior
-    this.router.navigate(['new'], { relativeTo: this.route});
-
+    this.router.navigate(['new'], { relativeTo: this.route });
   }
 
+  editarCurso() {
+    console.log('botao editar');
+  }
+
+  deletarCurso() {
+    console.log('botao deletar');
+  }
 
   ngOnInit(): void {}
 }
