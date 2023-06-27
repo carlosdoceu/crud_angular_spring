@@ -1,5 +1,5 @@
-import { Courses } from './../model/courses';
-import { CoursesService } from './../services/courses.service';
+import { Courses } from '../../model/courses';
+import { CoursesService } from '../../services/courses.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';

@@ -1,6 +1,6 @@
-import { CoursesService } from './../services/courses.service';
+import { CoursesService } from '../../services/courses.service';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Courses } from '../model/courses';
+import { Courses } from '../../model/courses';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
@@ -14,7 +14,10 @@ export class CoursesListComponent {
 //de courses list para courses component
   @Input() courses: Courses[] = [];
   //eventEmiter emissor de eventos
+  //false pois n temos nada pra passar e não temos nada asincrono
   @Output() add = new EventEmitter(false);
+  @Output() edit = new EventEmitter(false);
+  @Output() delete = new EventEmitter(false);
 
   //readonly sera utilizado para como objeto final, sem sofrer alteração
   readonly displayedColumns = ['name', 'category', 'actions'];
@@ -37,11 +40,13 @@ export class CoursesListComponent {
   }
 
   editarCurso() {
-    console.log('botao editar');
+    // console.log('botao editar');
+    this.edit.emit(true);
   }
 
   deletarCurso() {
-    console.log('botao deletar');
+    // console.log('botao deletar');
+    this.delete.emit(true);
   }
 
 
