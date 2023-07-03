@@ -1,4 +1,4 @@
-import { Courses } from '../../model/courses';
+import { Course } from '../../model/courses';
 import { CoursesService } from '../../services/courses.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -14,7 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./courses.component.scss'],
 })
 export class CoursesComponent implements OnInit {
-  courses$: Observable<Courses[]>;
+  courses$: Observable<Course[]>;
   displayedColumns = ['name', 'category', 'actions'];
 
   // CoursesService: CoursesService;
@@ -48,8 +48,10 @@ export class CoursesComponent implements OnInit {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
 
-  editarCurso() {
-    console.log('botao editar');
+  editarCurso(course: Course) {
+    // console.log('botao editar');
+    this.router.navigate(['edit', course._id], { relativeTo: this.route });
+
   }
 
   deletarCurso() {

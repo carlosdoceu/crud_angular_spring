@@ -1,20 +1,22 @@
-import { Injectable, OnInit } from '@angular/core';
-import { Courses } from '../model/courses';
-
-//import do HTTP client  - injeção de dependencia
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { delay, first, tap } from 'rxjs/operators';
 
+import { Course } from '../model/courses';
+
+//import do HTTP client  - injeção de dependencia
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class CoursesService {
   private readonly API = 'api/courses';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+
+  }
 
   list() {
-    return this.httpClient.get<Courses[]>(this.API).pipe(
+    return this.httpClient.get<Course[]>(this.API).pipe(
       first(),
       delay(1000),
       tap((courses) => console.log(courses))
@@ -23,7 +25,7 @@ export class CoursesService {
 
 //No Ts salvando como Partial pois estamos passando tudo para o servidor
 //pois não é necessariamente passar tudo, dizemos que passamos somente o necessario
-  save(record: Partial<Courses>){
-   return this.httpClient.post<Courses>(this.API, record);
+  save(record: Partial<Course>){
+   return this.httpClient.post<Course>(this.API, record);
   }
 }

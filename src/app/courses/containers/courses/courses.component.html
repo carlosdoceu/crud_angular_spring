@@ -7,7 +7,7 @@
           *ngIf="courses$ | async as courses; else loading"
           [courses]="courses"
           (add)="adicionarCurso()"
-          (edit)="editarCurso()"
+          (edit)="editarCurso($event)"
           (delete)="deletarCurso()"
         >
         </app-courses-list>

@@ -1,6 +1,6 @@
 import { CoursesService } from '../../services/courses.service';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Courses } from '../../model/courses';
+import { Course } from '../../model/courses';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CoursesListComponent {
 //quando a relacionamento entre  componente filho e componente pai
 //de courses list para courses component
-  @Input() courses: Courses[] = [];
+  @Input() courses: Course[] = [];
   //eventEmiter emissor de eventos
   //false pois n temos nada pra passar e não temos nada asincrono
   @Output() add = new EventEmitter(false);
@@ -39,9 +39,8 @@ export class CoursesListComponent {
 
   }
 
-  editarCurso() {
-    // console.log('botao editar');
-    this.edit.emit(true);
+  editarCurso(course: Course) {
+    this.edit.emit(course);
   }
 
   deletarCurso() {

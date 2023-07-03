@@ -1,7 +1,7 @@
 import { LocalizedString } from '@angular/compiler';
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, NonNullableFormBuilder } from '@angular/forms';
+import { NonNullableFormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -35,7 +35,9 @@ export class CourseFormComponent {
     // private route: ActivatedRoute,
     private service: CoursesService,
     private snackBar: MatSnackBar,
-    private location: Location
+    private location: Location,
+    private activatedRoute: ActivatedRoute,
+
   ) {
     // this.form =
   }
@@ -43,7 +45,7 @@ export class CourseFormComponent {
   adicionarCurso() {
     // this.router.navigate([''], { relativeTo: this.route});
     //chama save do serviço para consumir a API
-    this.service.save(this.form.value).subscribe({
+    this.service.save.(this.form.value).subscribe({
       next: () => this.onSucess(),
       error: () => {
         this.onError();
