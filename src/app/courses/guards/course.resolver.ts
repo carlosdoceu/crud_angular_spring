@@ -1,21 +1,31 @@
-import { Course } from './../model/courses';
-import { ResolveFn } from '@angular/router';
-import { Injectable, OnInit } from '@angular/core';
-import {} from "../model/courses"
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { Observable, of } from 'rxjs';
+
+import { Course } from '../model/courses';
+import { CoursesService } from '../services/courses.service';
 
 @Injectable({
-  export interface ())
+  providedIn: 'root'
 })
 
+ /*
+ guarda de rotas, comunicação dados tanto front quanto back
 
-// export const courseResolver: ResolveFn<boolean> = (ActivatedRouteSnapshot, RouterStateSnapshot) => {
+ */
+export class CourseResolver implements Resolve<Course> {
 
-//   return true;
-// };
+  constructor(private service: CoursesService) { }
 
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Course> {
+    /**
+     * se existe parametros com id, busca esse objeto com esse id
+     */
+    if (route.params && route.params['id']) {
+      return this.service.loadById(route.params['id']);
+    }
+    //por ser um observable de curso
 
-
-export const courseResolver: ResolveFn<boolean> = (ActivatedRouteSnapshot, RouterStateSnapshot) => {
-
-  return true;
-};
+    return of({ _id: '', name: '', category: '', lessons: [] });
+  }
+}

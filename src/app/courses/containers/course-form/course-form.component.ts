@@ -36,7 +36,7 @@ export class CourseFormComponent {
     private service: CoursesService,
     private snackBar: MatSnackBar,
     private location: Location,
-    private activatedRoute: ActivatedRoute,
+    private route: ActivatedRoute,
 
   ) {
     // this.form =
@@ -45,7 +45,7 @@ export class CourseFormComponent {
   adicionarCurso() {
     // this.router.navigate([''], { relativeTo: this.route});
     //chama save do serviço para consumir a API
-    this.service.save.(this.form.value).subscribe({
+    this.service.save(this.form.value).subscribe({
       next: () => this.onSucess(),
       error: () => {
         this.onError();
