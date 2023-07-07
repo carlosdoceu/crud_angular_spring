@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CoursesService } from '../../services/courses.service';
 
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { Course } from '../../model/courses';
 
 // import { Route } from '@angular/router';
 // import { CoursesService } from '../services/courses.service';
@@ -23,6 +24,7 @@ export class CourseFormComponent {
    * tipando os valores do formulario
    */
   form = this.formBuilder.group({
+    _id: [''],
     name: [''],
     category: [''],
     // salvarCurso: [null],
@@ -36,10 +38,20 @@ export class CourseFormComponent {
     private service: CoursesService,
     private snackBar: MatSnackBar,
     private location: Location,
-    private route: ActivatedRoute,
-
+    private route: ActivatedRoute
   ) {
     // this.form =
+  }
+  /**
+   ja pssou pele nosso resolver, tudo oq temos q fazer é puxar os dados de la
+   */
+  ngOnInit(): void {
+    const course: Course = this.route.snapshot.data['course'];
+    this.form.setValue({
+      _id: course._id,
+      name: course.name,
+      category: course.category,
+    });
   }
 
   adicionarCurso() {

@@ -43,9 +43,9 @@ export class CoursesListComponent {
     this.edit.emit(course);
   }
 
-  deletarCurso() {
+  deletarCurso(course: Course) {
     // console.log('botao deletar');
-    this.delete.emit(true);
+    this.delete.emit(course);
   }
 
 
